@@ -17,6 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Testar o gerador
+        run: python3 -m unittest discover -s tests -v
       - name: Baixar o upstream
         run: git clone --depth 1 https://github.com/VoltAgent/awesome-design-md.git upstream
       - name: Gerar o plugin
