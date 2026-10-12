@@ -1,7 +1,7 @@
 {
-  "version": "1.20261012.1",
+  "version": "1.20261012.2",
   "upstream_commit": "c7c1bada4eda972236d124e06ee58df129a9266b",
   "brands": 84,
-  "content_hash": "ecc989d944d6a88a97e9d95c86189209658d0b4d38f24dae4846504a64808f44",
-  "synced_at": "2026-10-12T20:51:08+00:00"
+  "content_hash": "c2e1fd947070e4d70d3ec12f5c48bc6a0439e8bf6565102f707942cbb8b75c78",
+  "synced_at": "2026-10-12T21:09:23+00:00"
 }
