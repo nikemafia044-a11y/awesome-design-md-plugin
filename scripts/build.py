@@ -131,10 +131,12 @@ def generate(upstream, out):
 
 
 def tree_hash(folder):
+    # Ordena pelo texto do caminho: Path ordena sem caixa no Windows e com caixa no Linux,
+    # o que dava hashes diferentes no PC e no GitHub Actions para o mesmo conteúdo.
     h = hashlib.sha256()
-    for p in sorted(folder.rglob("*")):
-        if p.is_file():
-            h.update(p.relative_to(folder).as_posix().encode() + b"\0" + p.read_bytes() + b"\0")
+    files = sorted((p.relative_to(folder).as_posix(), p) for p in folder.rglob("*") if p.is_file())
+    for rel, p in files:
+        h.update(rel.encode() + b"\0" + p.read_bytes() + b"\0")
     return h.hexdigest()
 
 
