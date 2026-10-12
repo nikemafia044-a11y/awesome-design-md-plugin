@@ -1,0 +1,34 @@
+name: Sincronizar DESIGN.md do upstream
+
+on:
+  schedule:
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Baixar o upstream
+        run: git clone --depth 1 https://github.com/VoltAgent/awesome-design-md.git upstream
+      - name: Gerar o plugin
+        run: python3 scripts/build.py --upstream upstream
+      - name: Commitar se mudou
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A plugins sync-state.json LICENSE
+          if git diff --cached --quiet; then
+            echo "Sem mudanças no upstream."
+            exit 0
+          fi
+          git commit -m "sync: awesome-design-md $(git -C upstream rev-parse --short HEAD)"
+          git push

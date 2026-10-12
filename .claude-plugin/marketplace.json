@@ -1,0 +1,17 @@
+{
+  "name": "awesome-design-md-sync",
+  "owner": {
+    "name": "nikemafia044-a11y"
+  },
+  "metadata": {
+    "description": "Espelho do VoltAgent/awesome-design-md empacotado como plugin para o app do Claude e o Claude Code, sincronizado todo dia."
+  },
+  "plugins": [
+    {
+      "name": "awesome-design-md",
+      "source": "./plugins/awesome-design-md",
+      "description": "Biblioteca de DESIGN.md prontos para criar interfaces e design systems no estilo de marcas conhecidas.",
+      "category": "design"
+    }
+  ]
+}
